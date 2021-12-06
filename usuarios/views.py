@@ -93,6 +93,11 @@ def cria_receita(request):
     else:
         return render(request, 'usuarios/cria_receita.html')
 
+def deleta_receita(request, receita_id):
+    receita = get_object_or_404(Receita, pk=receita_id)
+    receita.delete()
+    return redirect('dashboard')
+
 def campo_vazio(campo):
     return not campo.strip()
 
@@ -101,3 +106,4 @@ def senha_diferente(senha, senha2):
     
 def verifica_usuario(email):
     return User.objects.filter(email=email).exists()
+
